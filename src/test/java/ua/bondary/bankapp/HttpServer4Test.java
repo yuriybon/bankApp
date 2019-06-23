@@ -20,7 +20,7 @@ public abstract class HttpServer4Test {
 
     @After
     public void stopServer() throws Exception {
-        server.stop();
+        server.shutdownNow();
     }
 
     protected WebTarget resource(String path) {

@@ -41,9 +41,8 @@ public class ServerApp {
     public static void main(String[] args) throws IOException {
         System.out.println("MyServer");
         final HttpServer server = startServer();
-        System.out.println(String.format("Jersey app started with WADL available at "
-                + "%sapplication.wadl\nHit enter to stop it...", "http://localhost:8081/api/"));
+        System.out.println(String.format("Jersey app started \n Hit enter to stop it...", "http://localhost:8081/api/"));
         System.in.read();
-        server.stop();
+        server.shutdownNow();
     }
 }
