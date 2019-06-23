@@ -1,9 +1,10 @@
-package ua.bondary.bankapp.Service;
+package ua.bondary.bankapp.service;
 
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class AccountServiceTest {
 
@@ -11,6 +12,6 @@ public class AccountServiceTest {
     public void getBalanceTest() {
         AccountService accountService = new AccountService();
 
-        assertThat(accountService.getBalance(), is(0.0));
+        assertThat(accountService.findByPhone("").getBalance(), is(10.0));
     }
 }
