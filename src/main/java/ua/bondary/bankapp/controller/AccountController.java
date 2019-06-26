@@ -28,7 +28,7 @@ public class AccountController {
     @GET
     @Path("{phone}")
     public Response getByPhone(@PathParam("phone") String phone) {
-        System.out.println("phone="+phone);
+        System.out.println("phone"+phone);
         Account account = accountService.findByPhone(phone);
         return ok(account).build();
     }
@@ -40,7 +40,7 @@ public class AccountController {
 
     @PUT
     public Response save(Account account) {
-        accountService.save(account);
+       // accountService.save(account);
         return noContent().build();
     }
 
