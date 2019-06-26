@@ -1,0 +1,6 @@
+<Context>
+    <Resource name="jdbc/bankunitDB" auth="Container" type="javax.sql.DataSource"
+              driverClassName="org.h2.Driver" url="jdbc:h2:file:~/myh2db;DB_CLOSE_ON_EXIT=FALSE;INIT=RUNSCRIPT FROM 'classpath:sql/create.sql'\;RUNSCRIPT FROM 'classpath:sql/data.sql"
+              username="sa" password="" maxActive="20" maxIdle="10"
+              maxWait="-1" />
+</Context>
