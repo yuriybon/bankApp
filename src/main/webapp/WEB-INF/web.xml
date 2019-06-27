@@ -23,7 +23,7 @@
             <param-name>javax.ws.rs.Application</param-name>
             <param-value>ua.bondary.bankapp.BankAppConfig</param-value>
         </init-param>
-        <load-on-startup>1</load-on-startup>
+        <load-on-startup></load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>Bank Application</servlet-name>
