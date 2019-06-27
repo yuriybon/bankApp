@@ -1,5 +1,6 @@
 package ua.bondary.bankapp;
 
+import org.glassfish.grizzly.http.server.HttpHandler;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.http.server.StaticHttpHandler;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
@@ -7,6 +8,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import ua.bondary.bankapp.dbutils.DevelopmentDatasourceFactory;
 
 import javax.annotation.Resource;
+import javax.xml.ws.handler.Handler;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;

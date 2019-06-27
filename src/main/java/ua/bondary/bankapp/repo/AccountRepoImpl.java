@@ -11,12 +11,15 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class AccountRepoImpl implements AccountRepo {
+
     private DataSource dataSource;
     private Long localID = 0L;
 
     @Inject
     public AccountRepoImpl(DataSource dataSource) throws SQLException {
         this.dataSource = dataSource;
+        if (this.dataSource != null)
+            System.out.println("DataSource is not null");
     }
 
     @Override

@@ -5,19 +5,30 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import ua.bondary.bankapp.controller.AccountController;
 import ua.bondary.bankapp.dbutils.DevelopmentDatasourceFactory;
+import ua.bondary.bankapp.repo.AccountRepoImpl;
+import ua.bondary.bankapp.service.AccountService;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import java.sql.SQLException;
 
 
 public class BankAppConfig extends ResourceConfig {
 
-    public BankAppConfig() {
+    public BankAppConfig()  {
         packages("ua.bondary.bankapp");
         register(new BankAppBinder());
         register(lookupDatasource());
         register(JacksonFeature.class);
+
+        try {
+            registerInstances(
+                    new AccountController(new AccountService(new AccountRepoImpl(lookupDatasource())))
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

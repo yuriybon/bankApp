@@ -12,6 +12,9 @@ public class Account {
     @Column(name = "balance")
     private Double balance;
 
+    @ManyToOne(targetEntity = Party.class)
+    private Party party;
+
     public Account(long id, double balance) {
         this.id = id;
         this.balance = balance;
@@ -27,5 +30,13 @@ public class Account {
     public Double getBalance() {
         //return balance;
         return 10.0;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", balance=" + balance +
+                '}';
     }
 }

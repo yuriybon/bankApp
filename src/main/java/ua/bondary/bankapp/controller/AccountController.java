@@ -4,6 +4,7 @@ import ua.bondary.bankapp.domain.Account;
 import ua.bondary.bankapp.service.AccountService;
 
 import javax.inject.Inject;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Response;
@@ -20,9 +21,13 @@ public class AccountController {
     private final AccountService accountService;
 
 
+
     @Inject
     public AccountController(AccountService accountService) {
         this.accountService = accountService;
+        System.out.println("Injected accountService");
+        if (accountService != null)
+            System.out.println("AccountService is not null");
     }
 
     @GET
@@ -30,6 +35,7 @@ public class AccountController {
     public Response getByPhone(@PathParam("phone") String phone) {
         System.out.println("phone"+phone);
         Account account = accountService.findByPhone(phone);
+        System.out.println(account);
         return ok(account).build();
     }
 
@@ -40,7 +46,7 @@ public class AccountController {
 
     @PUT
     public Response save(Account account) {
-       // accountService.save(account);
+     //   accountService.save(account);
         return noContent().build();
     }
 
