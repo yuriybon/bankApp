@@ -2,7 +2,7 @@ package ua.bondary.bankapp.repo;
 
 import ua.bondary.bankapp.domain.Account;
 
-import javax.inject.Inject;
+
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,10 +12,10 @@ import java.util.Optional;
 
 public class AccountRepoImpl implements AccountRepo {
 
+
     private DataSource dataSource;
     private Long localID = 0L;
 
-    @Inject
     public AccountRepoImpl(DataSource dataSource) throws SQLException {
         this.dataSource = dataSource;
         if (this.dataSource != null)

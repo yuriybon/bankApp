@@ -1,8 +1,8 @@
 package ua.bondary.bankapp.repo;
 
+import com.sun.istack.internal.NotNull;
 import ua.bondary.bankapp.domain.Account;
 
-import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
 public interface PartyRepo {

@@ -1,53 +1,41 @@
 package ua.bondary.bankapp;
 
-import org.glassfish.grizzly.http.server.HttpHandler;
-import org.glassfish.grizzly.http.server.HttpServer;
-import org.glassfish.grizzly.http.server.StaticHttpHandler;
-import org.glassfish.hk2.utilities.binding.AbstractBinder;
-import org.glassfish.jersey.server.ResourceConfig;
-import ua.bondary.bankapp.dbutils.DevelopmentDatasourceFactory;
 
-import javax.annotation.Resource;
-import javax.xml.ws.handler.Handler;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URI;
-
-import static org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory.createHttpServer;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.webapp.WebAppContext;
+import org.h2.jdbcx.JdbcDataSource;
 
 public class ServerApp {
 
 
+    public static void main(String[] args) {
+        try {
+            // 1.We are creating the service
+            Server server = new Server(8080);
 
-    public static HttpServer startServer() throws MalformedURLException {
-        HttpServer httpServer = createHttpServer(URI.create("http://localhost:8081/api/"), new BankAppConfig());
-        addStaticContent(httpServer);
-        return httpServer;
-    }
+            // 2.We are enabling Jetty-plus configuration
+            org.eclipse.jetty.webapp.Configuration.ClassList classlist = org.eclipse.jetty.webapp.Configuration.ClassList.setServerDefault(server);
+            classlist.addAfter("org.eclipse.jetty.webapp.FragmentConfiguration", "org.eclipse.jetty.plus.webapp.EnvConfiguration", "org.eclipse.jetty.plus.webapp.PlusConfiguration");
 
-    public static HttpServer startServer(AbstractBinder binder, String port) {
-        ResourceConfig config = new ResourceConfig();
-        config.packages("ua.bondary.bankapp");
-        config.register(binder);
-        HttpServer httpServer = createHttpServer(URI.create("http://localhost:" + port + "/api/"), config);
-   //     new Resource("java:jdbc/bankunitDB", new DevelopmentDatasourceFactory().make());
-        addStaticContent(httpServer);
-        return httpServer;
-    }
+            // 3.We are creating the web-application context
+            WebAppContext ctx = new WebAppContext();
+            ctx.setResourceBase("src/main/webapp");
+            ctx.setContextPath("/jetty-jndi-example");
 
-    public static HttpServer startServer(AbstractBinder binder) {
-        return startServer(binder, "8081");
-    }
+            // 4.We are creating the data-source here
+            JdbcDataSource dataSource = new JdbcDataSource();
+            dataSource.setUrl("jdbc:h2:tcp://localhost/~/jcgdb");
+            dataSource.setUser("sa");
 
-    private static void addStaticContent(HttpServer httpServer) {
-        httpServer.getServerConfiguration().addHttpHandler(new StaticHttpHandler("src/main/webapp/"));
-    }
+            // 5.Here we are registring the datasource for our server
+            new org.eclipse.jetty.plus.jndi.Resource(server, "jdbc/jcgDS", dataSource);
 
-    public static void main(String[] args) throws IOException {
-        System.out.println("MyServer");
-        final HttpServer server = startServer();
-        System.out.println(String.format("Jersey app started \n Hit enter to stop it...", "http://localhost:8081/api/"));
-        System.in.read();
-        server.shutdownNow();
+            // 6.Handler setting and application registration code
+            server.setHandler(ctx);
+            server.start();
+            server.join();
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        }
     }
 }

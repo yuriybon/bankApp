@@ -1,12 +1,12 @@
 package ua.bondary.bankapp.service;
 
+import com.sun.istack.internal.NotNull;
 import ua.bondary.bankapp.domain.Account;
 import ua.bondary.bankapp.repo.AccountRepo;
 
-import javax.inject.Inject;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
@@ -16,7 +16,7 @@ public class AccountService {
 //    EntityManager em;
     private AccountRepo repo;
 
-    @Inject
+
     public AccountService(AccountRepo repo) {
         this.repo = repo;
     }
