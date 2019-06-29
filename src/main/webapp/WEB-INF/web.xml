@@ -8,7 +8,7 @@
 
     <servlet>
         <servlet-name>bankUnitServlet</servlet-name>
-        <servlet-class>ua.bondary.bankapp.ServerApp</servlet-class>
+        <servlet-class>ua.bondary.bankapp.HttpAPIServlet</servlet-class>
 
     </servlet>
 
