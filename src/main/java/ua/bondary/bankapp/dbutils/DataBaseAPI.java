@@ -31,15 +31,15 @@ public class DataBaseAPI {
         }
     }
 
-    public static List<String> getArticleNames() {
+    public static List<String> getBankNames() {
 
         Connection conn = createConnection();
         List<String> articleNames = new ArrayList<String>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * from JCGEXAMPLE");
+            ResultSet rs = stmt.executeQuery("SELECT * from BANK");
             while (rs.next()) {
-                String articleName = rs.getString("ARTICLE_NAME");
+                String articleName = rs.getString("NAME");
                 if (articleName != null) {
                     articleNames.add(articleName);
                 }

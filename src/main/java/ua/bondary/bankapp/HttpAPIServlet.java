@@ -1,5 +1,7 @@
 package ua.bondary.bankapp;
 
+import ua.bondary.bankapp.dbutils.DataBaseAPI;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +16,11 @@ public class HttpAPIServlet extends HttpServlet {
 
         System.out.println("Servlet service method invoked");
         resp.getOutputStream().println("Servlet service method invoked");
+
+            List<String> articleNames = DataBaseAPI.getBankNames();
+            for (String articleName : articleNames) {
+                resp.getOutputStream().println(articleName);
+            }
 
 //        List<String> articleNames = DatabaseUtil.getArticleNames();
 //        for (String articleName : articleNames) {

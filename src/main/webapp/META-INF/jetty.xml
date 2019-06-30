@@ -1,0 +1,11 @@
+<New id="DSTest" class="org.eclipse.jetty.plus.jndi.Resource">
+    <Arg></Arg>
+    <Arg>jdbc/jcgDS</Arg>
+    <Arg>
+        <New class="org.h2.Driver">
+            <Set name="Url">jdbc:h2:file:~/myh2db</Set>
+            <Set name="User">sa</Set>
+            <Set name="Password"></Set>
+        </New>
+    </Arg>
+</New>
