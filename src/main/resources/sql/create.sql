@@ -4,25 +4,31 @@ name varchar(50)
 );
 
 CREATE TABLE PARTY (
-  id number(10),
-  bank_id number(4),
-  party_name varchar(255),
-  phone varchar(16),
-  party_type varchar(8)
+  id number(10)
+, bank_id number(4)
+, party_name varchar(255)
+, phone varchar(16)
+, party_type varchar(8)
 )
 ;
 
 CREATE TABLE CURRENCY (
-  ID VARCHAR(3) AUTO_INCREMENT
-, FULL_NAME VARCHAR2(50)
+  ID VARCHAR(3)
+, FULL_NAME VARCHAR(50)
+);
+
+CREATE TABLE EXCHANGE (
+  CURRENCY_ID VARCHAR(3)
+, PRICE_IN  NUMBER(10,3)
+, PRICE_OUT NUMBER(10,3)
 );
 
 
 CREATE TABLE ACCOUNT (
-  id number AUTO_INCREMENT,
-  account_id number,
-  currency_id varchar(3),
-  balance number(18,2)
+  id number AUTO_INCREMENT
+, account_id number
+, currency_id varchar(3)
+, balance number(18,2)
 );
 
 

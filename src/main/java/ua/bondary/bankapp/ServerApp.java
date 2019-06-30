@@ -20,11 +20,12 @@ public class ServerApp {
             // 3.We are creating the web-application context
             WebAppContext ctx = new WebAppContext();
             ctx.setResourceBase("src/main/webapp");
-            ctx.setContextPath("/jetty-jndi-example");
+            ctx.setContextPath("/api/v1");
 
             // 4.We are creating the data-source here
             JdbcDataSource dataSource = new JdbcDataSource();
-            dataSource.setUrl("jdbc:h2:tcp://localhost/~/jcgdb");
+            //dataSource.setUrl("jdbc:h2:file:~/myh2db;DB_CLOSE_ON_EXIT=FALSE;INIT=RUNSCRIPT FROM 'classpath:sql/create.sql'\\;RUNSCRIPT FROM 'classpath:sql/data.sql");
+            dataSource.setUrl("jdbc:h2:file:~/myh2db;");
             dataSource.setUser("sa");
 
             // 5.Here we are registring the datasource for our server
