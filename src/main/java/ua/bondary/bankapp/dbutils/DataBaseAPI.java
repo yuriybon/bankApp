@@ -31,6 +31,19 @@ public class DataBaseAPI {
         }
     }
 
+    public static DataSource getDataSource(){
+        try {
+            InitialContext ctx = new InitialContext();
+            // Here we lookup the datasource with the name
+            // "java:comp/env/jdbc/jcgDS"
+            DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/jcgDS");
+            return ds;
+        } catch (Exception exc) {
+            exc.printStackTrace();
+            return null;
+        }
+    }
+
     public static List<String> getBankNames() {
 
         Connection conn = createConnection();
