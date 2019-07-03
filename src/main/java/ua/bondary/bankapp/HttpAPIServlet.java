@@ -18,7 +18,8 @@ public class HttpAPIServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         System.out.println("Servlet service method invoked");
-//        resp.getOutputStream().println("Servlet service method invoked");
+
+       // resp.getOutputStream().println("Servlet service method invoked");
 
 //            List<String> articleNames = DataBaseAPI.getBankNames();
 //            for (String articleName : articleNames) {
